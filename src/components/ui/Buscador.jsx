@@ -1,5 +1,7 @@
 import { Col } from "react-bootstrap";
-const Buscador = () => {
+
+const Buscador = ({onChangeSearch}) => {
+  
   return (
     <>
       <Col md={4} lg={5}>
@@ -14,4 +16,5 @@ const Buscador = () => {
     </>
   );
 };
+
 export default Buscador;

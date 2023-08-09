@@ -22,7 +22,7 @@ const Gimoji = () => {
   useEffect(() =>{
     getInit()
   }, [search])
-  
+
   const getCategories = async () => {
     const respuesta = await fetch(`${urlApi}gifs/categories?api_key=${apiKey}`)
     const { data } = await respuesta.json()
@@ -39,6 +39,13 @@ const Gimoji = () => {
   const onChangeByCategory = (event) => {
     setSearch(event.target.value)
   }
+  
+  const onChangeSearch = (event) => {
+    const data = event.target.value
+    if(data.length > 2) {
+      setSearch(data)
+    }
+  }
     return (
     <>
       <Navegacion></Navegacion>
@@ -49,7 +56,8 @@ const Gimoji = () => {
           <SelectorCategorias    
           categories={categories} 
           onChangeByCategory={(event) =>onChangeByCategory(event)}    />
-          <Buscador/>
+          <Buscador
+          onChangeSearch={(event) => onChangeSearch (event)}/>
         </Row>
       </div>
       <div className="py-2 mt-5">
