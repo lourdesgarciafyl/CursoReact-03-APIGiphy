@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+.seccionPrincipal{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: #fa8072 ;
+}
+.banner{
+  background: rgb(210,112,254);
+  background: linear-gradient(180deg, rgba(210,112,254,0.835171568627451) 37%, rgba(250,128,114,1) 74%);
+}
+.textoBanner{
+  color:aliceblue;
+  font-weight: bolder;
+  font-size: 50px !important;
+  font-family: 'Orbitron', sans-serif;
+}
