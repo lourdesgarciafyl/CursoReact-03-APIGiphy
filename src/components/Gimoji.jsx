@@ -5,36 +5,54 @@ import SelectorCategorias from "./ui/SelectorCategorias";
 import Buscador from "./ui/Buscador";
 import GifCard from "./GifCard";
 import { useEffect, useState } from "react";
+import { useFetch } from "../hooks/useFetch";
 
 const apiKey = import.meta.env.VITE_APIKEY_GIPHY;
 const urlApi = import.meta.env.VITE_URL_API;
 
 const Gimoji = () => {
-  const [categories, setCategories] = useState([])
-  const [gifs, setGifs] = useState([])
+ // const [categories, setCategories] = useState([])
+ // const [gifs, setGifs] = useState([])
   const [search, setSearch] = useState("vintage")
 
-  useEffect(() => {
-    getCategories();
-    getInit();
-  }, [])
+  // traemos los return del useFetch. NO se puede instanciar dentro de un useEffect 
+  // Cambio el nombre de data por dataCateg y dataSearch para que no se repita la constante
+  const {data: dataCateg} = useFetch(`${urlApi}gifs/categories?api_key=${apiKey}`)
+  const {data: dataSearch, isLoading: isLoadingSearch } = useFetch(
+    `gifs/search?api_key=${apiKey}&q=${search}&limit=24&offset=0&rating=g&lang=en&bundle=messaging_non_clips`
+  );
 
-  useEffect(() =>{
-    getInit()
-  }, [search])
 
-  const getCategories = async () => {
-    const respuesta = await fetch(`${urlApi}gifs/categories?api_key=${apiKey}`)
-    const { data } = await respuesta.json()
-    setCategories(data)
-  }
+  //useEffect(() => {
+  //  getCategories();
+  //  getInit();
+  // }, [])
 
-  const getInit = async () => {
-    const respuesta = await fetch(
-      `${urlApi}gifs/search?api_key=${apiKey}&q=${search}&limit=24&offset=08`)
-    const { data } = await respuesta.json()
-    setGifs(data)
-  }
+  // useEffect(() =>{
+  //  getInit()
+  // }, [search])
+
+  /* FETCH */
+ // const getCategories = async () => {
+ //   const respuesta = await fetch(`${urlApi}gifs/categories?api_key=${apiKey}`)
+ //   const { data } = await respuesta.json()
+ //   setCategories(data)
+ // }
+
+  /* Axios */
+  // const getnit = async () => {
+  //   const { data } = await giphyAxios.get(
+  //     `gifs/search?api_key=${apiKey}&q=${search}&limit=24&offset=0&rating=g&lang=en&bundle=messaging_non_clips`
+  //   );
+  //   setGifs(data.data);
+  // }; 
+
+  //const getInit = async () => {
+  //  const respuesta = await fetch(
+  //    `${urlApi}gifs/search?api_key=${apiKey}&q=${search}&limit=24&offset=08`)
+  //  const { data } = await respuesta.json()
+  //  setGifs(data)
+  // }
 
   const onChangeByCategory = (event) => {
     setSearch(event.target.value)
@@ -54,7 +72,7 @@ const Gimoji = () => {
       <div className="mb-1">
         <Row className="justify-content-center">
           <SelectorCategorias    
-          categories={categories} 
+          categories={dataCateg} 
           onChangeByCategory={(event) =>onChangeByCategory(event)}    />
           <Buscador
           onChangeSearch={(event) => onChangeSearch (event)}/>
@@ -64,7 +82,7 @@ const Gimoji = () => {
             <div className="container">
                 <Row className="">
                    <GifCard 
-                   gifs={gifs}></GifCard>
+                   gifs={dataSearch}></GifCard>
                 </Row>
             </div>
         </div>   
