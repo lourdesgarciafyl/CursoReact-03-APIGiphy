@@ -75,7 +75,7 @@ useEffect(() => {
   return (
     <>
       {gifs.map((gif) => (
-          <Col md={3} lg={4} className="mb-3" key={gif.id}>
+          <Col md={6} lg={4} className="mb-3" key={gif.id}>
             <div className="card shadow-sm">
               <img 
               src={gif.images.fixed_width_small.url} 

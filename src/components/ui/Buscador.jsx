@@ -4,7 +4,7 @@ const Buscador = ({onChangeSearch}) => {
   
   return (
     <>
-      <Col md={4} lg={5}>
+      <Col sm={8} md={4} lg={5}>
         <input
           type="search"
           className=" form-control text-dark"

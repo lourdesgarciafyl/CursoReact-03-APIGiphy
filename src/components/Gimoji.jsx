@@ -4,6 +4,7 @@ import Navegacion from "./header/Navegacion";
 import SelectorCategorias from "./ui/SelectorCategorias";
 import Buscador from "./ui/Buscador";
 import GifCard from "./GifCard";
+import  {Cargando} from "./ui/Cargando";
 import { useEffect, useState } from "react";
 import { useFetch } from "../hooks/useFetch";
 
@@ -64,13 +65,18 @@ const Gimoji = () => {
       setSearch(data)
     }
   }
+
+  if(isLoadingSearch){
+    return <Cargando />
+}
+
     return (
     <>
       <Navegacion></Navegacion>
-      <Banner />
       <div className="seccionPrincipal">
-      <div className="mb-1">
-        <Row className="justify-content-center">
+      <Banner />
+      <div className="mb-1  container">
+        <Row className="justify-content-center px-1">
           <SelectorCategorias    
           categories={dataCateg} 
           onChangeByCategory={(event) =>onChangeByCategory(event)}    />
@@ -78,8 +84,8 @@ const Gimoji = () => {
           onChangeSearch={(event) => onChangeSearch (event)}/>
         </Row>
       </div>
-      <div className="py-2 mt-5">
-            <div className="container">
+      <div className="py-2 mt-5  container">
+            <div>
                 <Row className="">
                    <GifCard 
                    gifs={dataSearch}></GifCard>
