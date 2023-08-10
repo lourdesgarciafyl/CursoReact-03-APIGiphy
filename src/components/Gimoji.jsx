@@ -12,7 +12,7 @@ const urlApi = import.meta.env.VITE_URL_API;
 const Gimoji = () => {
   const [categories, setCategories] = useState([])
   const [gifs, setGifs] = useState([])
-  const [search, setSearch] = useState("random")
+  const [search, setSearch] = useState("vintage")
 
   useEffect(() => {
     getCategories();
