@@ -17,12 +17,12 @@ useRef - useMemo - useCallback - useSwr - useId
 
 ## Para poder visualizarlo:
 
-**1**-Hacer un fork del repositorio.
-**2-** Clonar el repositorio en su computadora.
-**3-** En una terminal, ejecutar el comando `npm install`.
-**4-** Crease una cuenta en Giphy y solicitar una API key.
-**5-** Incluir la API key en una  carpeta .env 
-**6-** En una terminal, ejecutar el comando `npm run dev` 
+- **1**-Hacer un fork del repositorio.
+- **2-** Clonar el repositorio en su computadora.
+- **3-** En una terminal, ejecutar el comando `npm install`.
+- **4-** Crease una cuenta en Giphy y solicitar una API key.
+- **5-** Incluir la API key en una  carpeta .env 
+- **6-** En una terminal, ejecutar el comando `npm run dev` 
 
 
 ## Autora 😎:
