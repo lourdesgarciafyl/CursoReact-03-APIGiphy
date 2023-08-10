@@ -1,9 +1,14 @@
 import { Col, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const GifCard = ({ gifs }) => {
   const [likes, setLikes] = useState([])
-  const [heart, setHeart] = useState([])
+  const sessionFavs = JSON.parse(sessionStorage.getItem("favGif")) || []
+  const [heart, setHeart] = useState(sessionFavs)
+
+useEffect(() => {
+  sessionStorage.setItem("favGif", JSON.stringify(heart))
+}, [heart])
 
   const onClickHeart = (gifId) => {
     const gifExist = heart.find((item) => item.id == gifId)
@@ -32,6 +37,7 @@ const GifCard = ({ gifs }) => {
       })
       setHeart(updateHeart)
     }
+    sessionStorage.setItem('favGif', JSON.stringify(heart));
   }
 
   const getHeart = (gifId) => {
