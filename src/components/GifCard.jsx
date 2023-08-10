@@ -3,6 +3,41 @@ import { useState } from "react";
 
 const GifCard = ({ gifs }) => {
   const [likes, setLikes] = useState([])
+  const [heart, setHeart] = useState([])
+
+  const onClickHeart = (gifId) => {
+    const gifExist = heart.find((item) => item.id == gifId)
+    if(!gifExist){
+      const newHeartObj = {
+        id: gifId,
+        color: "btn-danger"
+      }
+      setHeart([... heart, newHeartObj])
+    } else { 
+      const updateHeart = heart.map((item) => {
+        if(item.id == gifId) {
+          if(item.color == "btn-secondary"){
+            return { 
+              ... item, 
+              color: "btn-danger"
+            }
+          } else {
+            return { 
+              ... item, 
+              color: "btn-secondary"
+            }
+          }
+        }
+        return item;
+      })
+      setHeart(updateHeart)
+    }
+  }
+
+  const getHeart = (gifId) => {
+    const dataHeart = heart.find ((item) => item.id == gifId);
+    return dataHeart ? dataHeart.color : "btn-secondary"
+  }
 
   const onClickLike = (gifId) => {
     const gifExist = likes.find((item) => item.id == gifId)
@@ -34,7 +69,6 @@ const GifCard = ({ gifs }) => {
   return (
     <>
       {gifs.map((gif) => (
-        <>
           <Col md={3} lg={4} className="mb-3" key={gif.id}>
             <div className="card shadow-sm">
               <img 
@@ -62,7 +96,10 @@ const GifCard = ({ gifs }) => {
                       </svg>
                       <div>{getTotalLikes(gif.id)}</div>
                     </Button>
-                    <Button type="button" className="btn btn-sm btn-secondary">
+                    <Button 
+                    type="button" 
+                    className={`btn btn-sm ${getHeart(gif.id)} px-3`}
+                    onClick={() => onClickHeart(gif.id)}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
@@ -83,7 +120,6 @@ const GifCard = ({ gifs }) => {
               </div>
             </div>
           </Col>
-        </>
       ))}
     </>
   );
