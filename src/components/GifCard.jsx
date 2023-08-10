@@ -81,7 +81,7 @@ const GifCard = ({ gifs }) => {
                   <div className="btn-group">
                     <Button 
                     type="button" 
-                    className="btn btn-primary me-2"
+                    className="btn btn-primary px-3 me-2"
                     onClick={() => onClickLike(gif.id)}
                     >
                       <svg
