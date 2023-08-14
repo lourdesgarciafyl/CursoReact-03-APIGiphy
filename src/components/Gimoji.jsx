@@ -7,6 +7,7 @@ import GifCard from "./GifCard";
 import  {Cargando} from "./ui/Cargando";
 import { useEffect, useState } from "react";
 import { useFetch } from "../hooks/useFetch";
+import { useFetchAxios } from "../hooks/useFetchAxios";
 
 const apiKey = import.meta.env.VITE_APIKEY_GIPHY;
 const urlApi = import.meta.env.VITE_URL_API;
@@ -18,12 +19,13 @@ const Gimoji = () => {
 
   // traemos los return del useFetch. NO se puede instanciar dentro de un useEffect 
   // Cambio el nombre de data por dataCateg y dataSearch para que no se repita la constante
-  const {data: dataCateg} = useFetch(`${urlApi}gifs/categories?api_key=${apiKey}`)
+  //const {data: dataCateg} = useFetch(`${urlApi}gifs/categories?api_key=${apiKey}`)
+  const { data: dataCateg} = useFetchAxios(`gifs/categories?api_key=${apiKey}`, `get`,)
   const {data: dataSearch, isLoading: isLoadingSearch } = useFetch(
     `gifs/search?api_key=${apiKey}&q=${search}&limit=24&offset=0&rating=g&lang=en&bundle=messaging_non_clips`
   );
 
-
+  
   //useEffect(() => {
   //  getCategories();
   //  getInit();

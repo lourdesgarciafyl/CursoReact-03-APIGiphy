@@ -8,3 +8,4 @@ export const giphyAxios = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
