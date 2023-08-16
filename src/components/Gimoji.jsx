@@ -61,10 +61,16 @@ const Gimoji = () => {
     setSearch(event.target.value)
   }
   
-  const onChangeSearch = (event) => {
-    const data = event.target.value
-    if(data.length > 2) {
-      setSearch(data)
+  // const onChangeSearch = (event) => {
+  //   const data = event.target.value
+  //   if(data.length > 2) {
+  //     setSearch(data)
+  //   }
+  // }
+
+  const onChangeSearch = (text) => {
+    if(text.length > 2) {
+      setSearch(text)
     }
   }
 
@@ -83,7 +89,7 @@ const Gimoji = () => {
           categories={dataCateg} 
           onChangeByCategory={(event) =>onChangeByCategory(event)}    />
           <Buscador
-          onChangeSearch={(event) => onChangeSearch (event)}/>
+          onChangeSearch={(text) => onChangeSearch (text)}/>
         </Row>
       </div>
       <div className="py-2 mt-5  container">
