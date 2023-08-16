@@ -5,12 +5,13 @@ import SelectorCategorias from "./ui/SelectorCategorias";
 import Buscador from "./ui/Buscador";
 import GifCard from "./GifCard";
 import  {Cargando} from "./ui/Cargando";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useFetch } from "../hooks/useFetch";
 import { useFetchAxios } from "../hooks/useFetchAxios";
+import { useAxiosGif } from "../hooks/useAxiosGif";
 
 const apiKey = import.meta.env.VITE_APIKEY_GIPHY;
-const urlApi = import.meta.env.VITE_URL_API;
+// const urlApi = import.meta.env.VITE_URL_API;
 
 const Gimoji = () => {
  // const [categories, setCategories] = useState([])
@@ -21,10 +22,10 @@ const Gimoji = () => {
   // Cambio el nombre de data por dataCateg y dataSearch para que no se repita la constante
   //const {data: dataCateg} = useFetch(`${urlApi}gifs/categories?api_key=${apiKey}`)
   const { data: dataCateg} = useFetchAxios(`gifs/categories?api_key=${apiKey}`, `get`,)
-  const {data: dataSearch, isLoading: isLoadingSearch } = useFetch(
-    `gifs/search?api_key=${apiKey}&q=${search}&limit=24&offset=0&rating=g&lang=en&bundle=messaging_non_clips`
-  );
-
+//  const {data: dataSearch, isLoading: isLoadingSearch } = useFetch(
+//    `gifs/search?api_key=${apiKey}&q=${search}&limit=24&offset=0`
+//  );
+const {data: dataSearch, isLoading: isLoadingSearch, onLoadMore} = useAxiosGif(search);
   
   //useEffect(() => {
   //  getCategories();
@@ -74,6 +75,7 @@ const Gimoji = () => {
     }
   }
 
+
   if(isLoadingSearch){
     return <Cargando />
 }
@@ -99,7 +101,15 @@ const Gimoji = () => {
                    gifs={dataSearch}></GifCard>
                 </Row>
             </div>
-        </div>   
+        </div>
+        <div className="text-center">
+        <button 
+            className="btn btn-primary"
+            onClick={onLoadMore}
+           >
+              Cargar más
+            </button>  
+        </div> 
       </div>                 
     </>
   );
