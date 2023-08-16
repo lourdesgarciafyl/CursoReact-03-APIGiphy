@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { Button, Col } from "react-bootstrap";
 import { useEffect } from "react";
 
-const Buscador = () => {
+const Buscador = ({onChangeSearch}) => {
   
   const searchInput = useRef(null)
   const botonRef = useRef(null)
