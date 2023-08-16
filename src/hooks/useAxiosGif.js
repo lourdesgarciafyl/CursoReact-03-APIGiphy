@@ -7,6 +7,7 @@ export const useAxiosGif = (search) => {
     const [dataFetch, setDataFetch] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [offset, setOffset] = useState(1)
+    const [searchData, setSearchData] = useState("")
     const limit = 24;
 
     useEffect (() => {
@@ -17,10 +18,17 @@ export const useAxiosGif = (search) => {
         const resp = await giphyAxios.get(`gifs/search?api_key=${apiKey}&q=${search}&limit=${limit}&offset=${offset}`)
         const { data } = resp.data 
         console.log(data)
-        setDataFetch([
-            ...dataFetch,
-            ...data
-        ])
+        setDataFetch(prev => {
+            if(search != searchData){
+                setSearchData(search)
+                return data;
+            } else {
+                return [
+                    ...prev,
+                    ...data
+                ]
+             }
+        })
         setIsLoading(false)
     }
 
