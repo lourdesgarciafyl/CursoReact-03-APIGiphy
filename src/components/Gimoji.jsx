@@ -16,7 +16,7 @@ const apiKey = import.meta.env.VITE_APIKEY_GIPHY;
 const Gimoji = () => {
  // const [categories, setCategories] = useState([])
  // const [gifs, setGifs] = useState([])
-  const [search, setSearch] = useState("vintage")
+  const [search, setSearch] = useState("aesthetic")
 
   // traemos los return del useFetch. NO se puede instanciar dentro de un useEffect 
   // Cambio el nombre de data por dataCateg y dataSearch para que no se repita la constante
