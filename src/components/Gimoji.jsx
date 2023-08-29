@@ -6,7 +6,6 @@ import Buscador from "./ui/Buscador";
 import GifCard from "./GifCard";
 import  {Cargando} from "./ui/Cargando";
 import { useState } from "react";
-import { useFetch } from "../hooks/useFetch";
 import { useFetchAxios } from "../hooks/useFetchAxios";
 import { useAxiosGif } from "../hooks/useAxiosGif";
 
@@ -104,7 +103,7 @@ const {data: dataSearch, isLoading: isLoadingSearch, onLoadMore} = useAxiosGif(s
         </div>
         <div className="text-center">
         <button 
-            className="btn btn-primary"
+            className="btn btn-primary mb-5"
             onClick={onLoadMore}
            >
               Cargar más
